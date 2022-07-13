@@ -1,4 +1,4 @@
-- name: Hello World Sample
+- name: mysql create user and db
   hosts: all
   tasks:
     - name: copy script

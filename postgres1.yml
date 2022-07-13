@@ -1,0 +1,10 @@
+- name: Postgres create user and db
+  hosts: all
+  tasks:
+    - name: copy script
+      copy: src=postgres.sh dest=/home/support mode=0777
+    - name: run shell
+      command: sh /home/support/postgres.sh  {{dbname}}
+      register: command_output
+    - debug:
+         var: command_output.stdout_lines
