@@ -2,7 +2,7 @@
   hosts: all
   tasks:
     - name: copy script
-      copy: src=test.sh dest=/home/support mode=0777
+      copy: src=mysql-create.sh dest=/home/support mode=0777
     - name: run shell
       command: sh /home/support/mysql-create.sh {{mysql_root_password}} {{dbname}}
       register: command_output
