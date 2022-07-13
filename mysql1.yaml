@@ -1,9 +1,5 @@
 - name: Hello World Sample
   hosts: all
-  vars:
-     username: "ahmed"
-     dbname: "hala"
-     mysql_root_password : "P40xym-1T$$%%"
   tasks:
     - name: copy script
       copy: src=test.sh dest=/home/support mode=0777
