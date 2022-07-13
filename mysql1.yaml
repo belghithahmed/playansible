@@ -1,0 +1,8 @@
+- name: Hello World Sample
+  hosts: all
+  tasks:
+    - name: Hello Message
+      debug:
+        msg: "Hello World! {{ username }} "
+    - name: create a new database
+      mysql_db: name= {{ dbname }} state=present login_user=root login_password="{{ mysql_root_password }}"
