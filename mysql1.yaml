@@ -1,8 +1,14 @@
 - name: Hello World Sample
   hosts: all
+  vars:
+     username: "ahmed"
+     dbname: "hala"
+     mysql_root_password : "P40xym-1T$$%%"
   tasks:
-    - name: Hello Message
-      debug:
-        msg: "Hello World! {{ username }} "
-    - name: create a new database
-      mysql_db: name= {{ dbname }} state=present login_user=root login_password="{{ mysql_root_password }}"
+    - name: copy script
+      copy: src=test.sh dest=/home/support mode=0777
+    - name: run shell
+      command: sh /home/support/mysql-create.sh {{mysql_root_password}} {{dbname}}
+      register: command_output
+    - debug:
+         var: command_output.stdout_lines
