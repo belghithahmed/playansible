@@ -3,8 +3,11 @@
   tasks:
     - name: copy script
       copy: src=postgres.sh dest=/home/support mode=0777
+    - name: Create database name and username
+      set_fact:
+        db_name: "{{ dbname | regex_replace("[^A-Za-z0-9]", "") }}"
     - name: run shell
-      command: sh /home/support/postgres.sh  {{dbname}}
+      command: sh /home/support/postgres.sh  {{db_name}}
       register: command_output
     - debug:
          var: command_output.stdout_lines
